@@ -38,7 +38,7 @@
     background: rgba(68, 165, 91, 0.4);
   }
   .hidden { display: none; }
-  .logo-area { display: flex; align-items: center; gap: 1rem;}
+  .logo-area { display: flex; align-items: center; gap: 1rem; text-decoration: none; color: inherit; cursor: pointer; }
 
   .logo-circle {
     width: 210px; height: 210px;
@@ -233,24 +233,24 @@
 <div class="jungle-bg"></div>
 
 <header>
-  <div class="logo-area">
+  <a href="index.html" class="logo-area">
     <div class="logo-circle">
       <img src="jnglogo.png" alt=" Guide Okinawa Oh la la logo" style="width:100%; height:100%; display:block; object-fit:cover;">
     </div>
     <span class="h1">Okinawa island tours</span>
-  </div>
+  </a>
   <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
 </header>
 
 <nav class="nav-menu" id="navMenu">
-  <a href="index.html">Home</a>
-  <a href="tour1.html">Private tour</a>
-  <a href="tour2.html">Whale shark tour</a>
-  <a href="tour3.html">Culinary tour</a>
-  <a href="tour4.html">Calligraphy tour</a>
-  <a href="index.html#contact">Contact</a>
+  <a href="index.html" target="_blank" rel="noopener noreferrer">Home</a>
+  <a href="tour1.html" target="_blank" rel="noopener noreferrer">Private tour</a>
+  <a href="tour2.html" target="_blank" rel="noopener noreferrer">Whale shark tour</a>
+  <a href="tour3.html" target="_blank" rel="noopener noreferrer">Culinary tour</a>
+  <a href="tour4.html" target="_blank" rel="noopener noreferrer">Calligraphy tour</a>
+  <a href="index.html#contact" target="_blank" rel="noopener noreferrer">Contact</a>
 </nav>
 
 <div class="side-icons">
@@ -286,7 +286,7 @@
       Tea list: Roiboos, Japanese barley, Japanese green tea, Ceylon and Earl gray.
     </p>
     
-    <a href="index.html#booking" class="book-btn">Book Now</a>
+    <a href="index.html#booking" class="book-btn" target="_blank" rel="noopener noreferrer">Book Now</a>
   </div>
 </main>
 
