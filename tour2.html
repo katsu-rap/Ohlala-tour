@@ -176,6 +176,9 @@
     width: 50%;
     float: right;
     margin: 2rem 0 0 1.5rem;
+  }
+
+  .img-inner {
     border-radius: 59% 37% 54% 46% / 43% 51% 49% 57%;
     overflow: hidden;
   }
@@ -192,24 +195,26 @@
 
   .img-credit {
     margin: 0;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 0.35rem 0.5rem;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0;
     background: rgba(10, 30, 15, 0.82);
     color: rgba(248, 244, 232, 0.95);
     font-size: 0.7rem;
-    line-height: 1.3;
+    line-height: 1.35;
     text-align: center;
+    word-wrap: break-word;
     opacity: 0;
-    transition: opacity 0.25s ease;
-    pointer-events: none;
+    max-height: 0;
+    overflow: hidden;
+    transition: opacity 0.25s ease, max-height 0.25s ease, padding 0.25s ease;
   }
 
   .img-wrap:hover .img-credit,
   .img-wrap:focus-within .img-credit {
     opacity: 1;
+    max-height: 4rem;
+    padding: 0.4rem 0.5rem;
   }
 
 .book-btn {
@@ -263,9 +268,11 @@
   .tour-content h2 { font-size: 2rem; }
   .tour-content p { font-size: 1rem; }
   .img, .img.left, .img.right { float: none; width: 100%;height: auto; margin: 0 0 1rem; }
-  .img-wrap { float: none; width: 100%; margin: 0 0 1rem; }
+  .img-wrap { float: none; width: 90%; margin: 0 0 1rem; }
   .img-wrap .img { height: auto; min-height: 160px; }
-  .img-credit { opacity: 1; font-size: 0.65rem; padding: 0.3rem 0.45rem; }
+  .img-credit {
+    opacity: 1; max-height: none; padding: 0.35rem 0.5rem; font-size: 0.5rem; line-height: 1.4;
+  }
   .book-btn {
     font-size: 0.85rem; padding: 0.55em 1.1em;letter-spacing: 0.05em; margin: 2rem auto 0;
     max-width: calc(100% - 1rem);line-height: 1.25;
@@ -319,7 +326,9 @@
       are more than welcome, they will guaranteedly enjoy themselves.  Not a swimmer? Not a problem! We will take care of your safety while you are in the water.</p>
 
     <figure class="img-wrap">
-      <img class="img" src="tour2_1.jpg" alt="Whale shark in the sea">
+      <div class="img-inner">
+        <img class="img" src="tour2_1.jpg" alt="Whale shark in the sea">
+      </div>
       <figcaption class="img-credit">Photo by NOAA on Unsplash</figcaption>
     </figure>
       
@@ -347,7 +356,9 @@
 
 
     <figure class="img-wrap">
-      <img class="img" src="tour2_2.jpg" alt="Snorkelers in the sea">
+      <div class="img-inner">
+        <img class="img" src="tour2_2.jpg" alt="Snorkelers in the sea">
+      </div>
       <figcaption class="img-credit">Photo by Victoria Ballesteros on Unsplash</figcaption>
     </figure>
 
