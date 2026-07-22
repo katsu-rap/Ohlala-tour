@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Okinawa Island Tours</title>
+<meta name="description" content="...">
+<meta name="keywords" content="Okinawa, whale shark, snorkelling, tour, private tour, private guide, Japanese kitchen, classes, calligraphy, cooking, Japanese food, ">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Lato', sans-serif;
+    color: white;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  .jungle-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background: url('jungle_bg.png') center/cover no-repeat;
+  opacity: 0.60;
+}
+
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.3rem;
+    height: 200px;
+    background: rgba(68, 165, 91, 0.4);
+  }
+  .hidden { display: none; }
+  .logo-area { display: flex; align-items: center; gap: 1rem;}
+
+  .logo-circle {
+    width: 210px; height: 210px;
+    border-radius: 100%;
+    overflow: hidden;
+    margin-left: 150px;
+  }
+
+  .h1 {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Playfair Display', serif;
+    font-size: 60px;
+    letter-spacing: 0.05em;
+    color:rgba(6, 24, 7, 0.85);
+    text-align: center;
+  }
+
+  .hamburger {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-right: 150px;
+    background: none;
+    border: none;
+  }
+  .hamburger span {
+    display: block;
+    width: 30px; height: 4px;
+    background:rgba(6, 24, 7, 0.85);
+    transition: 0.3s;
+  }
+
+  .nav-menu {
+    position: fixed;
+    top: 120px; right: 60px;
+    width: 160px;
+    background: rgba(10, 30, 15, 0.97);
+    border:none;
+    z-index: 101;
+    transform: none;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    padding: 0;
+  }
+
+  .nav-menu.open { 
+    padding: 1rem 0;
+    border: 2px solid orange;
+    max-height: 400px; }
+
+  .nav-menu a {
+    display: block;
+    padding: 0.75rem 1.5rem;
+    color: white;
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    border-bottom: 1px solid rgba(82,183,136,0.15);
+    transition: background 0.2s, color 0.2s;
+  }
+  .nav-menu a:hover { background: rgba(231, 233, 104, 0.1); color: white; }
+
+  main {
+    position: relative;
+    z-index: 10;
+    padding: 250px 1.5rem 4rem 1.5rem;
+    max-width: 1200px;
+    margin-left: 10px
+}
+
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    margin-top: 1rem;
+  }
+
+  .flip-card { height: 350px; width: 280px; perspective: 1000px; cursor: pointer; }
+
+  .flip-card-inner {
+    position: relative;
+    width: 100%; height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.7s cubic-bezier(0.4,0,0.2,1);
+  }
+
+  .flip-card:hover .flip-card-inner,
+  .flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
+
+  .flip-front, .flip-back {
+    position: absolute;
+    inset: 0;
+    border-radius: 12px;
+    backface-visibility: hidden;
+    overflow: hidden;
+  }
+
+  .flip-front { background-size: cover; background-position: center; }
+
+  .flip-front::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(10,30,15,0.85) 0%, transparent 60%);
+  }
+
+  .flip-front-title {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    z-index: 2;
+    padding: 1.5rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: #fff;
+  }
+
+  .flip-front-tag {
+    display: inline-block;
+    background: white;
+    color: rgb(16, 44, 16);
+    font-size: 1.2rem;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    padding: 3px 10px;
+    border-radius: 30px;
+    margin-bottom: 0.5rem;
+  }
+
+  .flip-back {
+    z-index: 3;
+    background: rgba(10, 35, 20, 0.97);
+    border: 1px solid green;
+    transform: rotateY(180deg);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1.5rem;
+  }
+
+  .flip-back h2 {
+    font-family: 'Playfair Display', serif;
+    color: white;
+    font-size: 1.2rem;
+    margin-top: 1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .flip-back p {
+    position: relative;
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: rgba(248,244,232,0.85);
+    flex: 1;
+  }
+
+  .read-more-btn {
+    display: inline-block;
+    position: absolute;
+    z-index: 4;
+    pointer-events: auto; 
+    bottom: 1.5rem; left: 1rem; 
+    margin-top: 1rem;
+    padding: 0.4rem 1rem;
+    background: transparent;
+    border: 1.5px solid orange;
+    color: orange;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 1rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: background 0.2s, color 0.2s;
+    align-self: flex-start;
+  }
+  .read-more-btn:hover { background: rgba(231, 233, 104, 0.1); color: white; }
+
+  #card1 .flip-front { background-image: url('island tour.jpg'); }
+  #card2 .flip-front { background-image: url('whaleshnork.jpg'); }
+  #card3 .flip-front { background-image: url('cooking.jpg'); }
+  #card4 .flip-front { background-image: url('calligraphy.jpg'); }
+
+  .contact-section {
+    text-align: right;
+    padding: 2rem 0;
+    position: relative;
+    z-index: 10;
+  }
+
+  .contact-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    color: white;
+    margin-bottom: 1.5rem;
+  }
+
+  .contact-icons { display: flex; justify-content: center; gap: 2.5rem; flex-wrap: wrap; }
+
+  .contact-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    color: white;
+    transition: transform 0.2s, color 0.2s;
+  }
+
+  .full-width-separator {
+  border-top: 2px solid rgba(22, 68, 47, 0.5);
+  margin: 3rem 0;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  width: 100vw;
+  margin-left: calc(-50vw + 0px);
+  margin-right: calc(-50vw + 0px);
+}
+  .contact-icon:hover { transform: translateY(-4px); color: white; }
+
+  footer {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding: 1.5rem;
+    font-size: 0.78rem;
+    color: orange;
+    border-top: 1px solid rgba(82,183,136,0.2);
+  }
+
+  @media (max-width: 600px) {
+    header { height: 110px; padding: 0 1rem; }
+  .logo-circle { width: 85px; height: 85px; margin-left: 0; }
+  .h1 { font-size: 1.8rem; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+  .hamburger { margin-right: 1rem; }
+  .hamburger span { height: 2.5px; width: 24px; }
+  .nav-menu { right: 10px; width: 140px; }
+  main { padding-top: 130px; }
+  .cards-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+  #card3 .flip-front { background-position: center top; }
+  .flip-card { height: 300px; width: 100%; }
+  .flip-front-title { font-size: 1.4rem; padding: 1rem; }
+  .flip-back h2 { font-size: 1.1rem; }
+  .flip-back p { font-size: 0.85rem; }
+  .contact-section h2 { font-size: 1.8rem !important; }
+  .contact-section div[style*="font-size: 20px"] { font-size: 0.95rem !important; }
+  .contact-icon img, .contact-section img { width: 50px !important; height: 50px !important; }
+  .contact-section div[style*="gap: 3rem"] { gap: 1.5rem !important; }
+  .booking-form-section { max-width: 90% !important; padding: 1.2rem !important; margin: 2rem auto !important; }
+  .booking-form-section h2 { font-size: 1.4rem !important; }
+}
+</style>
+</head>
+<body>
+    <div class="jungle-bg"></div> 
+<header>
+  <div class="logo-area">
+    <div class="logo-circle">
+        <img src="jnglogo.png"alt=" Guide Okinawa Oh la la logo" style="width:100%; height:100%; display:block; object-fit:cover;">
+      </div>
+    <span class="h1">Okinawa island tours</span>
+  </div>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<nav class="nav-menu" id="navMenu">
+  <a href="index.html">Home</a>
+  <a href="tour1.html">Private tour</a>
+  <a href="tour2.html">Whale shark tour</a>
+  <a href="tour3.html">Culinary tour</a>
+  <a href="tour4.html">Calligraphy tour</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<main>
+      <div class="cards-grid" style="flex:1;">
+        <div class="flip-card" id="card1">
+          <div class="flip-card-inner">
+            <div class="flip-front">
+              <div class="flip-front-title">
+                <div class="flip-front-tag">from 75.000jpy</div><br>
+                Private island tour
+              </div>
+            </div>
+            <div class="flip-back">
+              <div>
+                <h2>Private island tour</h2>
+                <p>Discover Okinawa's real face: tours to waterfalls, hidden tracks, castle ruins, cafés and eateries, you name it! Tailored trip for friends or families
+                   around the island with an English  and Japanese speaking guide. Day trips available. Group size: 2-9.
+                </p>
+              </div>
+              <a href="tour1.html" class="read-more-btn">Read More & Book</a>
+            </div>
+          </div>
+        </div>
+  
+        <div class="flip-card" id="card2">
+          <div class="flip-card-inner">
+            <div class="flip-front">
+              <div class="flip-front-title">
+                <div class="flip-front-tag">30.000jpy</div><br>
+                Whale shark snorkelling
+              </div>
+            </div>
+            <div class="flip-back">
+              <div>
+                <h2>Whale shark snorkelling tour</h2>
+                <p>Snorkel with the biggest and gentlest fish in the ocean: the whale shark. Small groups with a safety oriented, English and Japanese speaking guide.
+                  Kids above the age of 5 are welcome! Perfect adventure for families, friends and couples.
+                </p>
+              </div>
+              <a href="tour2.html" class="read-more-btn">Read More & Book</a>
+            </div>
+          </div>
+        </div>
+  
+        <div class="flip-card" id="card3">
+          <div class="flip-card-inner">
+            <div class="flip-front">
+              <div class="flip-front-title">
+                <div class="flip-front-tag">20.000jpy</div><br>
+                Japanese cooking class
+              </div>
+            </div>
+            <div class="flip-back">
+              <div>
+                <h2>Japanese cooking class</h2>
+                <p>Cook an authentic Japanese food with local ingredients and an expert, with a real Japanese chef and an English translator. 
+                 Cook in a Japanese izakaya and eat what you made the Japanese way. For the menu please click "read more".
+                </p>
+              </div>
+              <a href="tour3.html" class="read-more-btn">Read More & Book</a>
+            </div>
+          </div>
+        </div>
+  
+        <div class="flip-card" id="card4">
+          <div class="flip-card-inner">
+            <div class="flip-front">
+              <div class="flip-front-title">
+                <div class="flip-front-tag">10.000jpy</div><br>
+                Calligraphy class
+              </div>
+            </div>
+            <div class="flip-back">
+              <div>
+                <h2>Calligraphy class</h2>
+                <p>A class for foreigners who want to create a personal travel gift to take home. You can write your name, a meaningful phrase or anything you like. 
+                  Write with a traditional Japanese brush and ink on rice paper then wrap it in a beautiful gift box. Tea is served during the class.
+                </p>
+              </div>
+              <a href="tour4.html" class="read-more-btn">Read More & Book</a>
+            </div>
+          </div>
+        </div>
+</main>
+
+<div class="full-width-separator"></div>
+
+<div class="contact-section" id="contact">
+  <h2 style="color: black; font-size: 45px; text-align: center;">Get In Touch</h2>
+  <div style="text-align: center; font-size: 20px; line-height: 2; color: black; margin: 2rem 0;">
+    <p><strong>Address:</strong> Okinawa, Uruma, Agena, 3-19-2 Y227 〒904-2214</p>
+    <p><strong>Phone:</strong> +81 070 9116 1121</p>
+    <p><strong>Email:</strong> Manuel.japan.tf@gmail.com</p>
+  </div>
+  <div style="display: flex; gap: 3rem; margin-top: 2rem; justify-content: center;">
+    <a class="contact-icon" href="https://wa.me/817091161121" target="_blank"><img src="whatsapp.png" alt="Whatsapp logo" style="width: 80px; height: 80px;"></a>
+    <a class="contact-icon" href="https://www.instagram.com/guide_okinawa_ohlala?utm_source=qr" target="_blank"><img src="insta.png" alt="Instagram logo" style="width: 80px; height: 80px;"></a>
+    <a class="contact-icon" href="https://line.me/ti/p/oGrcoWCYIq" target="_blank"><img src="line.png" alt="Line logo" style="width: 75px; height: 75px;"></a>
+  </div>
+</div>
+
+<div class="full-width-separator"></div>
+
+<div class="booking-form-section" id="booking" style="max-width: 800px; margin: 4rem auto; padding: 2rem; position: relative;z-index: 10; background: rgb(10, 51, 27,0.9); border: 2px solid orange; border-radius: 8px;">
+  <h2 style="font-family: 'Playfair Display', serif; color: white; margin-bottom: 1.5rem; text-align: center;">Book Your Tour</h2>
+  <form id="bookingForm" onsubmit="handleSubmit(event)">
+    <div style="margin-bottom: 1rem;">
+      <label style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem; color: white;">Full Name</label>
+      <input type="text" name="name" required style="width: 100%; padding: 0.6rem; border: 1px solid orange; border-radius: 4px; background: rgba(248,244,232,0.05); color: white;">
+    </div>
+    <div style="margin-bottom: 1rem;">
+      <label style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem; color: rgba(248,244,232,0.85);">Email</label>
+      <input type="email" name="email" required style="width: 100%; padding: 0.6rem; border: 1px solid orange; border-radius: 4px; background: rgba(248,244,232,0.05); color: white;">
+    </div>
+    <div style="margin-bottom: 1rem;">
+      <label style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem; color: rgba(248,244,232,0.85);">Whatsapp or phone</label>
+      <input type="tel" name="phone" required style="width: 100%; padding: 0.6rem; border: 1px solid orange; border-radius: 4px; background: rgba(248,244,232,0.05); color: white;">
+    </div>
+    <div style="margin-bottom: 1rem;">
+      <label style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem; color: rgba(248,244,232,0.85);">Select Tour</label>
+      <select name="tour" required style="width: 100%; padding: 0.6rem; border: 1px solid orange; border-radius: 4px; background: rgba(248,244,232,0.05); color: white;">
+        <option value="" style="background: #0a2315;">Choose a tour...</option>
+        <option value="Private Island Tour" style="background: #0a2315;">Private Island Tour - ¥75,000</option>
+        <option value="Whale Shark Snorkelling" style="background: #0a2315;">Whale Shark Snorkelling - ¥30,000</option>
+        <option value="Japanese Cooking Class" style="background: #0a2315;">Japanese Cooking Class - ¥20,000</option>
+        <option value="Calligraphy Class" style="background: #0a2315;">Calligraphy Class - ¥10,000</option>
+      </select>
+    </div>
+    <div style="margin-bottom: 1rem;">
+      <label style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem; color: rgba(248,244,232,0.85);">Preferred Date</label>
+      <input type="date" name="date" required style="width: 100%; padding: 0.6rem; border: 1px solid rgba(82,183,136,0.4); border-radius: 4px; background: rgba(248,244,232,0.05); color: white;">
+    </div>
+    <div style="margin-bottom: 1rem;">
+      <label style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem; color: rgba(248,244,232,0.85);">Number of Guests</label>
+      <input type="number" name="guests" min="1" required style="width: 100%; padding: 0.6rem; border: 1px solid rgba(82,183,136,0.4); border-radius: 4px; background: rgba(248,244,232,0.05); color: white;">
+    </div>
+    <div style="margin-bottom: 1.5rem;">
+      <label style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem; color: rgba(248,244,232,0.85);">Special Requests</label>
+      <textarea name="requests" rows="4" style="width: 100%; padding: 0.6rem; border: 1px solid rgba(82,183,136,0.4); border-radius: 4px; background: rgba(248,244,232,0.05); color: white; font-family: 'Lato', sans-serif;"></textarea>
+    </div>
+    <button type="submit" style="width: 100%; padding: 0.8rem; background: rgba(82,183,136,0.3); border: 1px solid rgba(82,183,136,0.6); color: white; border-radius: 4px; cursor: pointer; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; font-size: 0.85rem; transition: background 0.2s;">Send Booking Request</button>
+  </form>
+  <p id="formMessage" style="text-align: center; margin-top: 1rem; font-size: 0.9rem; color: rgba(248,244,232,0.7); display: none;"></p>
+</div>
+
+<div class="full-width-separator"></div>
+
+<div style="position:relative; z-index:10; max-width:800px; margin:3rem auto; padding:0 2rem; text-align:center; color:rgb(16,44,16);">
+  <p style="font-size:1.5rem; line-height:1.7; margin-bottom:2rem;">
+    A 50% deposit is required at the time of booking confirmation and the other 50% can be paid on the day of the activity.
+    Accepted payment methods: Visa, cash, bank transfer, online payment via invoice.
+  </p>
+  <p style="font-size:1.2rem; line-height:1.7;">
+    <strong>Cancellation Policy:</strong> Free cancellation up to a week before your tour.
+    Cancellations within a week are non-refundable unless it is an emergency.
+    No-shows are non-refundable. Emergencies are health- or weather-related. Hangover is none of those cases.
+  </p>
+</div>
+
+<footer>&copy; 2026 Okinawa Guide Oh La La. All rights reserved.</footer>
+
+<script>
+  function handleSubmit(event) {
+  event.preventDefault();
+  const data = new FormData(event.target);
+  const params = new URLSearchParams(data).toString();
+  window.location.href = `mailto:Manuel.japan.tf@gmail.com?subject=Booking Request&body=${encodeURIComponent(params)}`;
+  }
+  function toggleMenu() {
+    document.getElementById('navMenu').classList.toggle('open');
+  }
+  document.addEventListener('click', (e) => {
+  if (!e.target.closest('header') && !e.target.closest('.nav-menu')) {
+    document.getElementById('navMenu').classList.remove('open');
+    }
+  });
+  window.onscroll = () => document.querySelector('header').classList.toggle('hidden', window.scrollY > 170);
+
+  document.querySelectorAll('.flip-card').forEach(card => {
+  card.addEventListener('click', (e) => {
+    if (e.target.closest('.read-more-btn')) return; // let the link navigate normally
+    card.classList.toggle('flipped');
+  });
+});
+</script>
+</body>
+</html>

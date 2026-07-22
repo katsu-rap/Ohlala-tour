@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Private Island Tour | Okinawa Island Tours</title>
+<meta name="description" content="Private island tour around Okinawa with an English and Japanese speaking guide.">
+<meta name="keywords" content="Okinawa, private tour, private guide, island tour">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Lato', sans-serif;
+    color: white;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  .jungle-bg {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    background: url('jungle_bg.png') center/cover no-repeat;
+    opacity: 0.60;
+  }
+
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.3rem;
+    height: 200px;
+    background: rgba(68, 165, 91, 0.4);
+  }
+  .hidden { display: none; }
+  .logo-area { display: flex; align-items: center; gap: 1rem;}
+
+  .logo-circle {
+    width: 210px; height: 210px;
+    border-radius: 100%;
+    overflow: hidden;
+    margin-left: 150px;
+  }
+
+  .h1 {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Playfair Display', serif;
+    font-size: 60px;
+    letter-spacing: 0.05em;
+    color:rgba(6, 24, 7, 0.85);
+    text-align: center;
+  }
+
+  .hamburger {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-right: 150px;
+    background: none;
+    border: none;
+  }
+  .hamburger span {
+    display: block;
+    width: 30px; height: 4px;
+    background:rgba(6, 24, 7, 0.85);
+    transition: 0.3s;
+  }
+
+  .nav-menu {
+    position: fixed;
+    top: 120px; right: 60px;
+    width: 160px;
+    background: rgba(10, 30, 15, 0.97);
+    border:none;
+    z-index: 101;
+    transform: none;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    padding: 0;
+  }
+
+  .nav-menu.open {
+    padding: 1rem 0;
+    border: 2px solid orange;
+    max-height: 400px;
+  }
+
+  .nav-menu a {
+    display: block;
+    padding: 0.75rem 1.5rem;
+    color: white;
+    text-decoration: none;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    border-bottom: 1px solid rgba(82,183,136,0.15);
+    transition: background 0.2s, color 0.2s;
+  }
+  .nav-menu a:hover { background: rgba(231, 233, 104, 0.1); color: white; }
+
+  main {
+    position: relative;
+    z-index: 10;
+    padding: 270px 1.5rem 4rem 1.5rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  /* social icons, stacked left, scroll with page */
+  .side-icons {
+    position: fixed;
+    top: 50%;
+    right: 3rem;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    z-index: 20;
+  }
+  .side-icons a img {
+    width: 70px; height: 70px;
+    transition: transform 0.2s;
+  }
+  .side-icons a:hover img { transform: translateY(-4px); }
+
+  .tour-content {
+    max-width: 900px;
+    margin: 0 auto;
+    background: rgba(10, 51, 27, 0.9);
+    border: 2px solid orange;
+    border-radius: 8px;
+    padding: 3rem;
+  }
+
+  .tour-content h2 {
+    font-family: 'Playfair Display', serif;
+    text-align: center;
+    margin-bottom: 4rem;
+    color: white;
+    font-size: 4rem
+  }
+
+  .tour-content p {
+    font-size: 1.5rem;
+    line-height: 1.8;
+    color: rgba(248,244,232,0.9);
+    margin-bottom: 1.5rem;
+  }
+
+  .img {
+  width: 250px;
+  height: 250px;
+  background: rgba(248,244,232,0.15);
+  border: 1px solid rgba(18, 128, 45, 0.97);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(248,244,232,0.5);
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+    }
+
+.img.left {
+  float: left;
+  margin-right: 1.5rem;
+    }
+
+.img.right {
+  float: right;
+  margin-left: 1.5rem;
+    }
+.tour-content::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+  .book-btn {
+    display: block;
+    width: fit-content;
+    height:fit-content;
+    margin: 3rem auto 0 auto;
+    padding: 0.4rem 1rem;
+    background: transparent;
+    border: 1.5px solid orange;
+    color: orange;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 2rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: background 0.2s, color 0.2s;
+    clear: both;
+  }
+  .book-btn:hover { background: orange; color: rgba(10,30,15,1); }
+
+  footer {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding: 1.5rem;
+    font-size: 0.78rem;
+    color: rgba(248,244,232,0.4);
+    border-top: 1px solid rgba(82,183,136,0.2);
+  }
+
+  @media (max-width: 600px) {
+  .side-icons { display: none; }
+  header { height: 110px; padding: 0 1rem; }
+  .logo-circle { width: 85px; height: 85px; margin-left: 0; }
+  .h1 { font-size: 1.8rem; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+  .hamburger { margin-right: 1rem; }
+  .hamburger span { height: 2.5px; width: 24px; }
+  .nav-menu { right: 10px; width: 140px; }
+  main { padding-top: 130px; }
+  .tour-content { padding: 1.5rem; }
+  .tour-content h2 { font-size: 2rem; }
+  .tour-content p { font-size: 1rem; }
+  .img, .img.left, .img.right { float: none; width: 100%; margin: 0 0 1rem; }
+  .book-btn { font-size: 1.2rem; padding: 0.3rem 0.8rem; }
+  ul { margin-left: 1rem !important; }
+  li { font-size: 1rem !important; }
+  .tour-content p { margin-bottom: 1rem !important; }
+  .tour-content h2 { margin-bottom: 1.5rem; }
+  .tour-content p { margin-top: 1rem !important; }
+}
+
+</style>
+</head>
+<body>
+<div class="jungle-bg"></div>
+
+<header>
+  <div class="logo-area">
+    <div class="logo-circle">
+      <img src="jnglogo.png" alt=" Guide Okinawa Oh la la logo" style="width:100%; height:100%; display:block; object-fit:cover;">
+    </div>
+    <span class="h1">Okinawa island tours</span>
+  </div>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<nav class="nav-menu" id="navMenu">
+  <a href="index.html">Home</a>
+  <a href="tour1.html">Private tour</a>
+  <a href="tour2.html">Whale shark tour</a>
+  <a href="tour3.html">Culinary tour</a>
+  <a href="tour4.html">Calligraphy tour</a>
+  <a href="index.html#contact">Contact</a>
+</nav>
+
+<div class="side-icons">
+  <a href="https://wa.me/817091161121" target="_blank"><img src="whatsapp.png" alt="Whatsapp logo"></a>
+  <a href="https://www.instagram.com/guide_okinawa_ohlala?utm_source=qr" target="_blank"><img src="insta.png" alt="Instagram logo"></a>
+  <a href="https://line.me/ti/p/oGrcoWCYIq" target="_blank"><img src="line.png" alt="Line logo" style="width: 70px; height: 70px;"></a>
+</div>
+
+<main>
+  <div class="tour-content">
+    <h2>Private Island Tour</h2>
+    <p>Discover Okinawa on a tailored day trip made just for you and your group. If you want to see something less touristy and more local, you are at the right place!
+        Castle ruins, forest paths, lakes, secret spots with the best views and much more. Hiking and waterfalls? The Yambaru National Park is waiting for you!
+        More of a beach person? Okinawa's hidden gem beaches are offering a great place to relax. Interested in the Ryukyu culture? Discover the traditional side of
+        Okinawa with us. </p>
+
+    <img src="tour1_2.jpg" alt="Okinawa group island tour" class="img left">
+
+    <p style="margin-bottom: 4rem;">Along the way we will stop at local cafés and small izakayas (Japanese eateries), tasting Okinawan dishes that are famously healthy. 
+       Relaxed and flexible schedule shaped around what you and your group want to see, 
+       whether that's more time at a waterfall, a longer lunch, or an extra stop at a scenic viewpoint.</p>
+
+    <img src="tour1_1.jpg" alt="Sunset in Okinawa" class="img right">
+
+    <p style="margin-bottom: 4rem;">This tour is ideal for friends or families travelling together, with a group size of two to nine people. If the group is bigger, 
+      we will come up with a plan for you, just message us. Kids are absolutely welcome. 
+       Transport is included throughout the day, and your guide is happy to answer questions about Okinawan culture, history, and daily life along the way.
+       Halfday trips are available and we can pick you up from and drop you off at your accommodation. 
+       The price includes the food in the izakayas, entrance tickets to certain places and soft drinks.</p>
+
+    <img src="tour1_3.jpg" alt="Beautiful view in Okinawa" class="img left">
+
+    <p style="margin-bottom: 0rem;">What to bring?</p>
+    <ul style="margin-top: 0; margin-left: 18rem; font-size:1.5rem;">
+            <li>Sunscreen</li>
+            <li>Swimsuit</li>
+            <li>Hat</li>
+            <li>Plenty of water</li>
+            <li>Sunglasses</li>
+            <li>Mosquito repellent</li>
+            <li>Adequate shoes, trousers and light T-shirts</li>
+          </ul>
+
+     <p style="clear:both; margin-top: 4rem;">Day trips are available on most dates, subject to availability. 
+        Reach out with your preferred date and group size, and we'll confirm the details together. 
+        We are available via email, Whatsapp, Instagram or Line between 8.00-24.00  Japanese time. </p>
+
+    <a href="index.html#booking" class="book-btn">Book Now</a>
+  </div>
+</main>
+
+<footer>&copy; 2026 Okinawa Guide Oh La La. All rights reserved.</footer>
+
+<script>
+  function handleSubmit(event) {
+    event.preventDefault();
+    const data = new FormData(event.target);
+    const params = new URLSearchParams(data).toString();
+    window.location.href = `mailto:Manuel.japan.tf@gmail.com?subject=Booking Request&body=${encodeURIComponent(params)}`;
+  }
+  function toggleMenu() {
+    document.getElementById('navMenu').classList.toggle('open');
+  }
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('header') && !e.target.closest('.nav-menu')) {
+      document.getElementById('navMenu').classList.remove('open');
+    }
+  });
+  window.onscroll = () => document.querySelector('header').classList.toggle('hidden', window.scrollY > 170);
+</script>
+</body>
+</html>
