@@ -503,5 +503,10 @@ Japanese cooking classes & calligraphy with a bilingual English-Japanese guide."
   });
 });
 </script>
+<!-- track analytics -->
+<script>
+  fetch('/api/track', {method:'POST', body: JSON.stringify({page: location.pathname, ref: document.referrer})});
+  </script>
+
 </body>
 </html>
