@@ -337,7 +337,7 @@ Japanese cooking classes & calligraphy with a bilingual English-Japanese guide."
                    around the island with an English  and Japanese speaking guide. Day trips available. Group size: 2-9.
                 </p>
               </div>
-              <a href="tour1.html" class="read-more-btn" target="_blank" rel="noopener noreferrer">Read More & Book</a>
+              <a href="tour1.html" class="read-more-btn" target="_blank" rel="noopener noreferrer" onclick="fetch('/api/track', {method:'POST', body: JSON.stringify({type:'click', button:'tour1_book'})})">Read More & Book</a>
             </div>
           </div>
         </div>
@@ -357,8 +357,7 @@ Japanese cooking classes & calligraphy with a bilingual English-Japanese guide."
                   Kids above the age of 5 are welcome! Perfect adventure for families, friends and couples.
                 </p>
               </div>
-              <a href="tour2.html" class="read-more-btn" target="_blank" rel="noopener noreferrer">Read More & Book</a>
-            </div>
+              <a href="tour2.html" class="read-more-btn" target="_blank" rel="noopener noreferrer" onclick="fetch('/api/track', {method:'POST', body: JSON.stringify({type:'click', button:'tour2_book'})})">Read More & Book</a>
           </div>
         </div>
   
@@ -377,7 +376,7 @@ Japanese cooking classes & calligraphy with a bilingual English-Japanese guide."
                  Cook in a Japanese izakaya and eat what you made the Japanese way. For the menu please click "read more".
                 </p>
               </div>
-              <a href="tour3.html" class="read-more-btn" target="_blank" rel="noopener noreferrer">Read More & Book</a>
+              <a href="tour3.html" class="read-more-btn" target="_blank" rel="noopener noreferrer" onclick="fetch('/api/track', {method:'POST', body: JSON.stringify({type:'click', button:'tour3_book'})})">Read More & Book</a>
             </div>
           </div>
         </div>
@@ -397,7 +396,7 @@ Japanese cooking classes & calligraphy with a bilingual English-Japanese guide."
                   Write with a traditional Japanese brush and ink on rice paper then wrap it in a beautiful gift box. Tea is served during the class.
                 </p>
               </div>
-              <a href="tour4.html" class="read-more-btn" target="_blank" rel="noopener noreferrer">Read More & Book</a>
+              <a href="tour4.html" class="read-more-btn" target="_blank" rel="noopener noreferrer" onclick="fetch('/api/track', {method:'POST', body: JSON.stringify({type:'click', button:'tour4_book'})})">Read More & Book</a>            
             </div>
           </div>
         </div>
@@ -413,9 +412,9 @@ Japanese cooking classes & calligraphy with a bilingual English-Japanese guide."
     <p><strong>Email:</strong> Manuel.japan.tf@gmail.com</p>
   </div>
   <div style="display: flex; gap: 3rem; margin-top: 2rem; justify-content: center;">
-    <a class="contact-icon" href="https://wa.me/817091161121" target="_blank"><img src="whatsapp.png" alt="Whatsapp logo" style="width: 80px; height: 80px;"></a>
-    <a class="contact-icon" href="https://www.instagram.com/guide_okinawa_ohlala?utm_source=qr" target="_blank"><img src="insta.png" alt="Instagram logo" style="width: 80px; height: 80px;"></a>
-    <a class="contact-icon" href="https://line.me/ti/p/oGrcoWCYIq" target="_blank"><img src="line.png" alt="Line logo" style="width: 75px; height: 75px;"></a>
+    <a class="contact-icon" href="https://wa.me/817091161121" target="_blank" onclick="fetch('/api/track', {method:'POST', body: JSON.stringify({type:'click', button:'whatsapp'})})"><img src="whatsapp.png" alt="Whatsapp logo" style="width: 80px; height: 80px;"></a>
+    <a class="contact-icon" href="https://www.instagram.com/guide_okinawa_ohlala?utm_source=qr" target="_blank" onclick="fetch('/api/track', {method:'POST', body: JSON.stringify({type:'click', button:'instagram'})})"><img src="insta.png" alt="Instagram logo" style="width: 80px; height: 80px;"></a>
+    <a class="contact-icon" href="https://line.me/ti/p/oGrcoWCYIq" target="_blank" onclick="fetch('/api/track', {method:'POST', body: JSON.stringify({type:'click', button:'line'})})"><img src="line.png" alt="Line logo" style="width: 75px; height: 75px;"></a>
   </div>
 </div>
 

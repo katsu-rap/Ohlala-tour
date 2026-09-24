@@ -268,9 +268,9 @@
 </nav>
 
 <div class="side-icons">
-  <a href="https://wa.me/817091161121" target="_blank"><img src="whatsapp.png" alt="Whatsapp logo"></a>
-  <a href="https://www.instagram.com/guide_okinawa_ohlala?utm_source=qr" target="_blank"><img src="insta.png" alt="Instagram logo"></a>
-  <a href="https://line.me/ti/p/oGrcoWCYIq" target="_blank"><img src="line.png" alt="Line logo" style="width: 70px; height: 70px;"></a>
+  <a href="https://wa.me/817091161121" target="_blank" onclick="fetch('/api/track', {method:'POST', body: JSON.stringify({type:'click', button:'whatsapp'})})"><img src="whatsapp.png" alt="Whatsapp logo"></a>
+  <a href="https://www.instagram.com/guide_okinawa_ohlala?utm_source=qr" target="_blank" onclick="fetch('/api/track', {method:'POST', body: JSON.stringify({type:'click', button:'instagram'})})"><img src="insta.png" alt="Instagram logo"></a>
+  <a href="https://line.me/ti/p/oGrcoWCYIq" target="_blank" onclick="fetch('/api/track', {method:'POST', body: JSON.stringify({type:'click', button:'line'})})"><img src="line.png" alt="Line logo" style="width: 70px; height: 70px;"></a>
 </div>
 
 <main>
@@ -335,5 +335,8 @@
   });
   window.onscroll = () => document.querySelector('header').classList.toggle('hidden', window.scrollY > 170);
 </script>
+<script>
+  fetch('/api/track', {method:'POST', body: JSON.stringify({page: location.pathname, ref: document.referrer})});
+  </script>
 </body>
 </html>
