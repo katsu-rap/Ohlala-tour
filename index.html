@@ -118,7 +118,7 @@ Japanese cooking classes & calligraphy with a bilingual English-Japanese guide."
     z-index: 10;
     padding: 250px 1.5rem 4rem 1.5rem;
     max-width: 1200px;
-    margin-left: 0 auto;
+    margin-left: 10px;
 }
 
   .cards-grid {
@@ -298,8 +298,14 @@ Japanese cooking classes & calligraphy with a bilingual English-Japanese guide."
   .contact-section div[style*="font-size: 20px"] { font-size: 0.95rem !important; }
   .contact-icon img, .contact-section img { width: 50px !important; height: 50px !important; }
   .contact-section div[style*="gap: 3rem"] { gap: 1.5rem !important; }
-  .cards-grid { margin-bottom: 3rem !important; }
-  .full-width-separator { margin: 2rem 0 !important; }
+  .full-width-separator {
+  position: static;
+  left: auto;
+  right: auto;
+  width: 100%;
+  margin: 2rem 0 !important;
+  }
+  html, body { overflow-x: hidden; }
   .contact-section { margin-top: 2rem !important; padding-top: 1rem !important; }
 }
 </style>
@@ -311,7 +317,7 @@ Japanese cooking classes & calligraphy with a bilingual English-Japanese guide."
     <div class="logo-circle">
         <img src="jnglogo.png"alt=" Guide Okinawa Oh la la logo" style="width:100%; height:100%; display:block; object-fit:cover;">
       </div>
-    <span class="h1">Okinawa island tours</h1>
+      <h1 class="h1">Okinawa island tours</h1>
   </a>
   <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
     <span></span><span></span><span></span>
@@ -319,12 +325,12 @@ Japanese cooking classes & calligraphy with a bilingual English-Japanese guide."
 </header>
 
 <nav class="nav-menu" id="navMenu">
-  <a href="index.html" target="_blank" rel="noopener noreferrer">Home</a>
-  <a href="tour1.html" target="_blank" rel="noopener noreferrer">Private tour</a>
-  <a href="tour2.html" target="_blank" rel="noopener noreferrer">Whale shark tour</a>
-  <a href="tour3.html" target="_blank" rel="noopener noreferrer">Culinary tour</a>
-  <a href="tour4.html" target="_blank" rel="noopener noreferrer">Calligraphy tour</a>
-  <a href="#contact" target="_blank" rel="noopener noreferrer">Contact</a>
+  <a href="index.html">Home</a>
+  <a href="tour1.html">Private tour</a>
+  <a href="tour2.html">Whale shark tour</a>
+  <a href="tour3.html">Culinary tour</a>
+  <a href="tour4.html">Calligraphy tour</a>
+  <a href="#contact">Contact</a>
 </nav>
 
 <main>
