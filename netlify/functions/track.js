@@ -4,8 +4,10 @@ export default async (req) => {
   const store = getStore("analytics");
   const body = await req.json();
   await store.setJSON(`visit-${Date.now()}`, {
-    page: body.page,
-    ref: body.ref,
+    type: body.type || null,
+    page: body.page || null,
+    button: body.button || null,
+    ref: body.ref || null,
     time: new Date().toISOString()
   });
   return new Response("ok");
